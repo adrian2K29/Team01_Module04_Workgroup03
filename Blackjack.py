@@ -58,6 +58,7 @@ def blackjack():
                 print(player_hand)
                 print(player_count)
                 game = False
+                
     if player_count > 21 and cpu_count > 21:
         print("push ")
     elif player_count > 21 and not cpu_count > 21:
