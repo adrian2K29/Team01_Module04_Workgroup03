@@ -1,4 +1,10 @@
 
+def manager():
+    print("====== Password Manger ======\n")
+    print("1. Add Account\n")
+
+manager()
+
 Password1 = {
         "Title":"Google",
         "Username":"User123",
