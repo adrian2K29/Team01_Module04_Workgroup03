@@ -1,5 +1,6 @@
 import random
 import art
+
 cards = (11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10)
 
 def rule(x, y):
@@ -7,11 +8,11 @@ def rule(x, y):
 
 def check(x, y):
     if x > y:
-        return "you win "
+        return "you win \n"
     elif x < y:
-        return "you lose "
+        return "you lose \n"
     else:
-        return "push "
+        return "push \n"
 
 def blackjack():
 
@@ -34,6 +35,7 @@ def blackjack():
 
     while game:
         if player_count < 21:
+            print("\n")
             print(f"Your hand: {player_hand}, current score: {player_count}")
             print(f"Cpu's 1st card: {cpu_hand[0]}")
             turn = input("type 'y' to hit, type 'n' to stay: ")
@@ -58,13 +60,13 @@ def blackjack():
                 print(player_hand)
                 print(player_count)
                 game = False
-                
+
     if player_count > 21 and cpu_count > 21:
-        print("push ")
+        print("push \n")
     elif player_count > 21 and not cpu_count > 21:
-        print("bust ")
+        print("bust \n")
     elif not player_count > 21 and cpu_count > 21:
-        print("win ")
+        print("win \n")
     else:
         bout = check(player_count, cpu_count)
         print(bout)
