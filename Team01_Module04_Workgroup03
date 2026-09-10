@@ -1,7 +1,7 @@
 
-u = {
+Password1 = {
         "Title":"Google",
         "Username":"User123",
         "Workplace":"4c;fRKA,=]6=XRya`?",
         "URL":"https://accounts.google.com/signin/"
-    }
+}
