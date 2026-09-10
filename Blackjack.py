@@ -1,10 +1,20 @@
 import random
 import art
 
-cards = (11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10)
+card_values = {
+    "Jack": 10,
+    "Queen": 10,
+    "King": 10,
+    "Ace": 11
+}
+
+face_cards = {"Jack", "Queen", "King"}
+
+cards = ("Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King")
 
 def rule(x, y):
     return x + y
+
 
 def check(x, y):
     if x > y:
@@ -13,6 +23,14 @@ def check(x, y):
         return "you lose \n"
     else:
         return "push \n"
+
+
+def card_value(card):
+    if card in face_cards:
+        return card_values[card]
+    elif card == "Ace":
+        return card_values["Ace"]
+    return card
 
 def blackjack():
 
@@ -24,12 +42,14 @@ def blackjack():
     for x in range(2):
         player_hand.append(random.choice(cards))
     
-    player_count = rule(player_hand[0],player_hand[1])
+    player_count = sum(card_value(card) for card in player_hand)
+    #player_count = rule(player_hand[0],player_hand[1])
 
     for x in range(2):
         cpu_hand.append(random.choice(cards))
 
-    cpu_count = rule(cpu_hand[0],cpu_hand[1])
+    cpu_count = sum(card_value(card) for card in cpu_hand)
+    #cpu_count = rule(cpu_hand[0],cpu_hand[1])
 
     print(art.logo)
 
@@ -42,30 +62,34 @@ def blackjack():
             if turn == 'n':
                 while cpu_count <= 16:
                     cpu_hand.append(random.choice(cards))
-                    cpu_count = rule(cpu_count, cpu_hand[-1])
+                    cpu_count += card_value(cpu_hand[-1]) #error
                 print(f"CPU hand:{cpu_hand}, score: {cpu_count}")
                 game = False
             else:
                 player_hand.append(random.choice(cards))
-                player_count = rule(player_count, player_hand[-1])
+                player_count += card_value(player_hand[-1]) #error
         elif player_count == 21:
             print(player_hand)
             print(player_count)
             game = False
         else:
-            if 11 in player_hand:
-                player_hand.remove(11)
+            if "Ace" in player_hand:
+                player_hand.remove("Ace")
                 player_hand.append(1)
+                player_count -= 10
             else:
                 print(player_hand)
                 print(player_count)
                 game = False
 
-    if player_count > 21 and cpu_count > 21:
+    player_bust = int(player_count > 21)
+    cpu_bust = int(cpu_count > 21)
+
+    if player_bust & cpu_bust:
         print("push \n")
-    elif player_count > 21 and not cpu_count > 21:
+    elif player_bust:
         print("bust \n")
-    elif not player_count > 21 and cpu_count > 21:
+    elif cpu_bust:
         print("win \n")
     else:
         bout = check(player_count, cpu_count)
