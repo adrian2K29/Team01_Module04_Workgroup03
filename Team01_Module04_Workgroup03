@@ -1,1 +1,12 @@
 
+u = {
+        "FirstName":"Mike",
+        "LastName":"Tutberidze",
+        "Workplace":
+            {
+                "CompanyName":"SDSU",
+                "CompanyAdress": "5500 Companile Drive",
+                "CompanyCity":"San Diego"
+            },
+        "Phone":8581234567
+    }
