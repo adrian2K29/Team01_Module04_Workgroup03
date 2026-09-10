@@ -43,13 +43,11 @@ def blackjack():
         player_hand.append(random.choice(cards))
     
     player_count = sum(card_value(card) for card in player_hand)
-    #player_count = rule(player_hand[0],player_hand[1])
 
     for x in range(2):
         cpu_hand.append(random.choice(cards))
 
     cpu_count = sum(card_value(card) for card in cpu_hand)
-    #cpu_count = rule(cpu_hand[0],cpu_hand[1])
 
     print(art.logo)
 
